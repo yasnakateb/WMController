@@ -6,6 +6,7 @@ module Timer (
     sig_Completed
     );
     
+    input clock;
     input [2:0] state;
     output reg sig_Full;
     output reg sig_Temperature;
