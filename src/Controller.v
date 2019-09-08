@@ -3,9 +3,9 @@ module Controller(
     lid,
     coin,
     cancel,
-    mode_1,
-    mode_2,
-    mode_3,
+    fill_Water,
+    heat_Water,
+    wash,
     idle,
     ready,
     soak_Operation,
@@ -20,9 +20,9 @@ module Controller(
     input lid;
     input coin;
     input cancel;
-    input mode_1;
-    input mode_2;
-    input mode_3;
+    input fill_Water;
+    input heat_Water;
+    input wash;
     output idle;
     output ready;
     output soak_Operation;
