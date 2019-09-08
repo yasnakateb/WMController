@@ -16,6 +16,10 @@ Timer uut (
 
 
 	initial begin 
+
+	$dumpfile("Timer_tb.vcd");
+    $dumpvars(0,Timer_tb);
+
 	clock = 0;
 	state = 0;
 	#1
