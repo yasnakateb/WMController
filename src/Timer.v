@@ -31,6 +31,17 @@ module Timer (
 
 
     always @ (posedge clock) begin 
+        if (fill_Water_Counter == FULL_WATER_TIME) begin
+            sig_Full = 1;
+        end
+        if (heat_Water_Counter == REQUIRED_TEMPERATURE_TIME) begin
+            sig_Temperature = 1;
+        end
+        if (wash_Counter == WASH_TIME   | 
+            rinse_Counter == RINSE_TIME |
+            spin_Counter == SPIN_TIME ) begin
+            sig_Completed = 1;
+        end
         case (state)
             STATE_FILL_WATER: begin
                 fill_Water_Counter = fill_Water_Counter + 1'd1;
@@ -62,11 +73,5 @@ module Timer (
             end
 
     end                    
-
-
-    
-
-
-
 
 endmodule
