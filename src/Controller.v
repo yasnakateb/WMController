@@ -44,7 +44,7 @@ module Controller(
     output coin_Return;
     output water_Intake;
     output fault_Cleared;
-    output [2:0] state;
+    output reg [2:0] state;
 
 
     parameter STATE_START = 3'd0 ;
@@ -142,6 +142,7 @@ module Controller(
             end
         endcase    
     end
+
 
 
 
