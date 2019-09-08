@@ -1,38 +1,48 @@
 module Controller(
     clock,
-    lid,
-    coin,
-    cancel,
-    fill_Water,
-    heat_Water,
-    wash,
-    idle,
+    sig_Lid_Closed,
+    sig_Coin,
+    sig_Cancel,
+    sig_Time_Out,
+    sig_Out_Of_Balance,
+    sig_Motor_Failure,
+    sig_Full,
+    sig_Temperature,
+    sig_Completed,
+    start,
     ready,
-    soak_Operation,
+    fill_Water_Operation,
+    heat_Water_Operation,
     wash_Operation,
     rinse_Operation,
     spin_Operation,
+    fault,
     coin_Return,
     water_Intake,
-    fault
+    state
     );
     
     input clock;
-    input lid;
-    input coin;
-    input cancel;
-    input fill_Water;
-    input heat_Water;
-    input wash;
-    output idle;
+    input sig_Lid_Closed;
+    input sig_Coin;
+    input sig_Cancel;
+    input sig_Time_Out;
+    input sig_Out_Of_Balance;
+    input sig_Motor_Failure;
+    input sig_Full;
+    input sig_Temperature;
+    input sig_Completed;
+    output start;
     output ready;
-    output soak_Operation;
+    output fill_Water_Operation;
+    output heat_Water_Operation;
     output wash_Operation;
     output rinse_Operation;
     output spin_Operation;
+    output fault;
     output coin_Return;
     output water_Intake;
-    output fault;
+    output [2:0] state;
 
 
     parameter STATE_START = 3'd0 ;
@@ -45,7 +55,7 @@ module Controller(
     parameter STATE_FAULT = 3'd7;
 
 
-    reg [2:0] state = STATE_IDLE;
+    reg [2:0] state = STATE_START;
     reg [2:0] next_State;
 
     always @( posedge clock ) begin
@@ -55,7 +65,7 @@ module Controller(
     always @( * ) begin
         case (state)
             STATE_START: begin
-                if (coin == 1) begin
+                if (sig_Coin == 1) begin
                     next_State = STATE_READY;     
                 end
                 else begin
@@ -64,6 +74,10 @@ module Controller(
 
             end
             STATE_READY: begin
+                if (sig_Lid_Closed == 0) begin
+                    next_State = STATE_FILL_WATER;
+                end
+
         
             end
             STATE_FILL_WATER: begin
@@ -84,6 +98,7 @@ module Controller(
             STATE_FAULT: begin
                 
             end
+        endcase    
     end
 
 
