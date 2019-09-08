@@ -44,7 +44,7 @@ module Controller(
     output coin_Return;
     output water_Intake;
     output fault_Cleared;
-    output reg [2:0] state;
+    output reg [2:0] state = STATE_START;
 
 
     parameter STATE_START = 3'd0 ;
@@ -56,8 +56,6 @@ module Controller(
     parameter STATE_SPIN = 3'd6;
     parameter STATE_FAULT = 3'd7;
 
-
-    reg [2:0] state = STATE_START;
     reg [2:0] next_State;
 
     always @( posedge clock ) begin
@@ -140,13 +138,22 @@ module Controller(
             STATE_FAULT: begin
                 next_State = STATE_READY;
             end
+            default: begin
+                next_State = STATE_START;
+            end
         endcase    
     end
 
-
-
-
-
-
+    assign start = (state == STATE_START) ? 1'b1 : 1'b0;
+    assign ready = (state == STATE_READY)? 1'b0: 1'b0;
+    assign fill_Water_Operation = (state == STATE_FILL_WATER)? 1'b0: 1'b0;
+    assign heat_Water_Operation = (state == STATE_HEAT_WATER)? 1'b0: 1'b0;
+    assign wash_Operation = (state == STATE_WASH)? 1'b0: 1'b0;
+    assign rinse_Operation = (state == STATE_RINSE)? 1'b0: 1'b0;
+    assign spin_Operation = (state ==STATE_SPIN)? 1'b0: 1'b0;
+    assign fault = (state == STATE_FAULT)? 1'b0: 1'b0;
+    assign coin_Return = (state == STATE_READY)? 1'b0: 1'b0 ;
+    assign water_Intake = ((state == STATE_FILL_WATER) || (state == STATE_RINSE))? 1'b0: 1'b0;
+    assign fault_Cleared = (state == STATE_FAULT)? 1'b0: 1'b0;
 
 endmodule
