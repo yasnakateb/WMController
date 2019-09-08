@@ -37,11 +37,13 @@ module Controller(
 
     parameter STATE_START = 3'd0 ;
     parameter STATE_READY = 3'd1;
-    parameter STATE_SOAK = 3'd2;
-    parameter STATE_WASH = 3'd3;
-    parameter STATE_RINSE = 3'd4;
-    parameter STATE_SPIN = 3'd5;
-    parameter STATE_FAULT = 3'd6;
+    parameter STATE_FILL_WATER = 3'd2;
+    parameter STATE_HEAT_WATER = 3'd3;
+    parameter STATE_WASH = 3'd4;
+    parameter STATE_RINSE = 3'd5;
+    parameter STATE_SPIN = 3'd6;
+    parameter STATE_FAULT = 3'd7;
+    
 
     reg [2:0] state = STATE_IDLE;
     reg [2:0] next_State;
