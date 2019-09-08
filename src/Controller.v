@@ -32,4 +32,11 @@ module Controller(
     output coin_Return;
     output water_Intake;
 
+    parameter STATE_IDLE;
+    parameter STATE_READY;
+    parameter STATE_SOAK;
+    parameter STATE_WASH;
+    parameter STATE_RINSE;
+    parameter STATE_SPIN;
+
 endmodule
