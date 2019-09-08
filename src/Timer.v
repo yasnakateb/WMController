@@ -70,7 +70,6 @@ module Timer (
                 wash_Counter = 0;
                 rinse_Counter = 0;
                 spin_Counter = 0;
-                
             end
         endcase
 
