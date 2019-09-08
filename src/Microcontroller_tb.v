@@ -22,14 +22,12 @@ Microcontroller uut(
 
 	$dumpfile("Microcontroller_tb.vcd");
     $dumpvars(0,Microcontroller_tb);
-
+    
 		clock = 0;
-		state = 0;
 		#1
 		clock = 1;
 		#1
 		clock = 0;
-		state = 3'd4;
 		#1
 		clock = 1;
 		#1
@@ -56,7 +54,6 @@ Microcontroller uut(
 		clock = 0;
 		#1
 		clock = 1;
-
 	end
 
 endmodule
