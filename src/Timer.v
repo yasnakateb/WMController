@@ -23,6 +23,12 @@ module Timer (
     parameter STATE_RINSE = 3'd5;
     parameter STATE_SPIN = 3'd6;
 
+    parameter FULL_WATER_TIME = 2'd2;
+    parameter REQUIRED_TEMPERATURE_TIME = 2'd3;
+    parameter WASH_TIME = 3'd5;
+    parameter RINSE_TIME = 2'd3;
+    parameter SPIN_TIME = 2'd3;
+
 
     always @ (posedge clock) begin 
         case (state)
