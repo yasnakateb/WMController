@@ -6,9 +6,6 @@ module Microcontroller(
     sig_Time_Out,
     sig_Out_Of_Balance,
     sig_Motor_Failure,
-    sig_Full,
-    sig_Temperature,
-    sig_Completed,
     state
 	);
 
@@ -19,9 +16,6 @@ module Microcontroller(
     input sig_Time_Out;
     input sig_Out_Of_Balance;
     input sig_Motor_Failure;
-    input sig_Full;
-    input sig_Temperature;
-    input sig_Completed;
     output [2:0] state;
 
     wire start;
@@ -35,6 +29,10 @@ module Microcontroller(
     wire coin_Return;
     wire water_Intake;
     wire fault_Cleared;
+
+    wire sig_Full;
+    wire sig_Temperature;
+    wire sig_Completed;
  
 
 Timer timer (
