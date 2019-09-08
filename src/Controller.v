@@ -39,4 +39,10 @@ module Controller(
     parameter STATE_RINSE;
     parameter STATE_SPIN;
 
+    reg [2:0] state;
+    reg [2:0] next_State;
+    always @( posedge clk ) begin
+        state = next_State;
+    end    
+
 endmodule
