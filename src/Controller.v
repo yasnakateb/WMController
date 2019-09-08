@@ -13,7 +13,8 @@ module Controller(
     rinse_Operation,
     spin_Operation,
     coin_Return,
-    water_Intake
+    water_Intake,
+    fault
     );
     
     input clock;
@@ -31,6 +32,7 @@ module Controller(
     output spin_Operation;
     output coin_Return;
     output water_Intake;
+    output fault;
 
 
     parameter STATE_START = 3'd0 ;
@@ -39,6 +41,7 @@ module Controller(
     parameter STATE_WASH = 3'd3;
     parameter STATE_RINSE = 3'd4;
     parameter STATE_SPIN = 3'd5;
+    parameter STATE_FAULT = 3'd6;
 
     reg [2:0] state = STATE_IDLE;
     reg [2:0] next_State;
@@ -65,6 +68,9 @@ module Controller(
                 
             end
             STATE_SPIN: begin
+                
+            end
+            STATE_FAULT: begin
                 
             end
     end
