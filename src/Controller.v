@@ -46,7 +46,7 @@ module Controller(
     reg [2:0] state = STATE_IDLE;
     reg [2:0] next_State;
 
-    always @( posedge clk ) begin
+    always @( posedge clock ) begin
         state = next_State;
     end
 
@@ -62,6 +62,7 @@ module Controller(
 
             end
             STATE_READY: begin
+                if 
                 
             end
             STATE_SOAK: begin
