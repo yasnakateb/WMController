@@ -32,7 +32,8 @@ module Controller(
     output coin_Return;
     output water_Intake;
 
-    parameter STATE_IDLE = 3'd0 ;
+
+    parameter STATE_START = 3'd0 ;
     parameter STATE_READY = 3'd1;
     parameter STATE_SOAK = 3'd2;
     parameter STATE_WASH = 3'd3;
@@ -48,10 +49,9 @@ module Controller(
 
     always @( * ) begin
         case (state)
-            STATE_IDLE: begin
+            STATE_START: begin
 
             end
-
             STATE_READY: begin
                 
             end
