@@ -25,6 +25,21 @@ module Timer (
 
     always @ (posedge clock) begin 
         case (state)
+            STATE_FILL_WATER: begin
+                
+            end
+            STATE_HEAT_WATER: begin
+                
+            end
+            STATE_WASH: begin
+                
+            end
+            STATE_RINSE: begin
+                
+            end
+            STATE_SPIN: begin
+                
+            end
 
     end                    
 
