@@ -6,7 +6,8 @@ module Microcontroller(
     sig_Time_Out,
     sig_Out_Of_Balance,
     sig_Motor_Failure,
-    state
+    state,
+    mode
 	);
 
 	input clock;
@@ -17,6 +18,8 @@ module Microcontroller(
     input sig_Out_Of_Balance;
     input sig_Motor_Failure;
     output [2:0] state;
+    output [1:0] mode;
+
 
     wire start;
     wire ready;
@@ -40,7 +43,8 @@ Timer timer (
     .state(state),
     .sig_Full(sig_Full),
     .sig_Temperature(sig_Full),
-    .sig_Completed(sig_Completed)
+    .sig_Completed(sig_Completed),
+    .mode(mode)
     ); 
 
 

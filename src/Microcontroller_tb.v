@@ -22,7 +22,37 @@ Microcontroller uut(
 
 	$dumpfile("Microcontroller_tb.vcd");
     $dumpvars(0,Microcontroller_tb);
-    
+
+		clock = 0;
+		#1
+		clock = 1;
+		sig_Coin = 1;
+		sig_Lid_Closed = 1;
+		#1
+		clock = 0;
+		#1
+		clock = 1;
+		#1
+		clock = 0;
+		#1
+		clock = 1;
+		#1
+		clock = 0;
+		#1
+		clock = 1;
+		#1
+		clock = 0;
+		#1
+		clock = 1;
+		#1
+		clock = 0;
+		#1
+		clock = 1;
+		#1
+		clock = 0;
+		#1
+		clock = 1;
+		#1
 		clock = 0;
 		#1
 		clock = 1;
