@@ -16,13 +16,23 @@ Timer uut (
 
 
 	initial begin 
-
-
-
-
-
-
-
+	clock = 0;
+	state = 0;
+	#1
+	clock = 1;
+	#1
+	clock = 0;
+	state = 2'd2;
+	#1
+	clock = 1;
+	#1
+	clock = 0;
+	#1
+	clock = 1;
+	#1
+	clock = 0;
+	#1
+	clock = 1;
 	end
 
 endmodule
