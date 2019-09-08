@@ -43,6 +43,7 @@ module Timer (
             spin_Counter == SPIN_TIME ) begin
             sig_Completed = 1;
         end
+        
         case (state)
             STATE_FILL_WATER: begin
                 fill_Water_Counter = fill_Water_Counter + 1'd1;
@@ -72,7 +73,6 @@ module Timer (
                 spin_Counter = 0;
             end
         endcase
-
     end                    
 
 endmodule
