@@ -43,7 +43,7 @@ module Controller(
     parameter STATE_RINSE = 3'd5;
     parameter STATE_SPIN = 3'd6;
     parameter STATE_FAULT = 3'd7;
-    
+
 
     reg [2:0] state = STATE_IDLE;
     reg [2:0] next_State;
@@ -64,10 +64,12 @@ module Controller(
 
             end
             STATE_READY: begin
-                if 
+        
+            end
+            STATE_FILL_WATER: begin
                 
             end
-            STATE_SOAK: begin
+            STATE_HEAT_WATER: begin
                 
             end
             STATE_WASH: begin
