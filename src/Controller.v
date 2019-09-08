@@ -53,6 +53,12 @@ module Controller(
     always @( * ) begin
         case (state)
             STATE_START: begin
+                if (coin == 1) begin
+                    next_State = STATE_READY;     
+                end
+                else begin
+                    next_State = STATE_START;
+                end
 
             end
             STATE_READY: begin
