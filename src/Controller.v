@@ -32,17 +32,20 @@ module Controller(
     output coin_Return;
     output water_Intake;
 
-    parameter STATE_IDLE;
-    parameter STATE_READY;
-    parameter STATE_SOAK;
-    parameter STATE_WASH;
-    parameter STATE_RINSE;
-    parameter STATE_SPIN;
+    parameter STATE_IDLE = 3'd0 ;
+    parameter STATE_READY = 3'd1;
+    parameter STATE_SOAK = 3'd2;
+    parameter STATE_WASH = 3'd3;
+    parameter STATE_RINSE = 3'd4;
+    parameter STATE_SPIN = 3'd5;
 
     reg [2:0] state;
     reg [2:0] next_State;
     always @( posedge clk ) begin
         state = next_State;
-    end    
+    end
+
+
+
 
 endmodule
