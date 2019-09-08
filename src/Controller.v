@@ -46,6 +46,29 @@ module Controller(
         state = next_State;
     end
 
+    always @( * ) begin
+        case (state)
+            STATE_IDLE: begin
+
+            end
+
+            STATE_READY: begin
+                
+            end
+            STATE_SOAK: begin
+                
+            end
+            STATE_WASH: begin
+                
+            end
+            STATE_RINSE: begin
+                
+            end
+            STATE_SPIN: begin
+                
+            end
+    end
+
 
 
 
