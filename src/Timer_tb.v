@@ -8,7 +8,7 @@ module Timer_tb();
 
 Timer uut (
     .clock(clock),
-    .state(clock),
+    .state(state),
     .sig_Full(sig_Full),
     .sig_Temperature(sig_Full),
     .sig_Completed(sig_Completed)
