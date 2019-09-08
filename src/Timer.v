@@ -71,6 +71,7 @@ module Timer (
                 spin_Counter = 0;
                 
             end
+        endcase
 
     end                    
 
