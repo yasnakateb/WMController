@@ -1,5 +1,5 @@
 module Microcontroller(
-	clock,
+    clock,
     sig_Lid_Closed,
     sig_Coin,
     sig_Cancel,
@@ -7,9 +7,9 @@ module Microcontroller(
     sig_Out_Of_Balance,
     sig_Motor_Failure,
     state
-	);
+    );
 
-	input clock;
+    input clock;
     input sig_Lid_Closed;
     input sig_Coin;
     input sig_Cancel;
@@ -18,8 +18,8 @@ module Microcontroller(
     input sig_Motor_Failure;
     output [2:0] state;
  
-	
-	wire start;
+    
+    wire start;
     wire ready;
     wire fill_Water_Operation;
     wire heat_Water_Operation;
@@ -62,7 +62,7 @@ Controller controller(
     .sig_Wash_Completed(sig_Wash_Completed),
     .sig_Rinse_Completed(sig_Rinse_Completed),
     .sig_Spin_Completed(sig_Spin_Completed),
-	.start(start),
+    .start(start),
     .ready(ready),
     .fill_Water_Operation(fill_Water_Operation),
     .heat_Water_Operation(heat_Water_Operation),
