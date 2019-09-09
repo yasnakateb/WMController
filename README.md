@@ -19,7 +19,7 @@ The microcontroller is composed of two blocks:
 
 🔹📍 Finite state machine block (controller)
 
-🔹📍 Timer block.
+🔹📍 Timer block
 
 ---
 ### ⚪️ Controller
