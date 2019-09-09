@@ -34,7 +34,9 @@ module Microcontroller(
 
     wire sig_Full;
     wire sig_Temperature;
-    wire sig_Completed;
+    wire sig_Wash_Completed;
+    wire sig_Rinse_Completed;
+    wire sig_Spin_Completed;
  
 
 Timer timer (
@@ -42,7 +44,9 @@ Timer timer (
     .state(state),
     .sig_Full(sig_Full),
     .sig_Temperature(sig_Temperature),
-    .sig_Completed(sig_Completed)
+    .sig_Wash_Completed(sig_Wash_Completed),
+    .sig_Rinse_Completed(sig_Rinse_Completed),
+    .sig_Spin_Completed(sig_Spin_Completed)
     ); 
 
 
@@ -56,8 +60,10 @@ Controller controller(
     .sig_Motor_Failure(sig_Motor_Failure),
     .sig_Full(sig_Full),
     .sig_Temperature(sig_Temperature),
-    .sig_Completed(sig_Completed),
-    .start(start),
+    .sig_Wash_Completed(sig_Wash_Completed),
+    .sig_Rinse_Completed(sig_Rinse_Completed),
+    .sig_Spin_Completed(sig_Spin_Completed),
+	.start(start),
     .ready(ready),
     .fill_Water_Operation(fill_Water_Operation),
     .heat_Water_Operation(heat_Water_Operation),

@@ -8,7 +8,9 @@ module Controller(
     sig_Motor_Failure,
     sig_Full,
     sig_Temperature,
-    sig_Completed,
+    sig_Wash_Completed,
+    sig_Rinse_Completed,
+    sig_Spin_Completed,
     start,
     ready,
     fill_Water_Operation,
@@ -32,7 +34,9 @@ module Controller(
     input sig_Motor_Failure;
     input sig_Full;
     input sig_Temperature;
-    input sig_Completed;
+    input sig_Wash_Completed;
+    input sig_Rinse_Completed;
+    input sig_Spin_Completed;
     output start;
     output ready;
     output fill_Water_Operation;
@@ -59,11 +63,11 @@ module Controller(
     reg state = STATE_START;
     reg [2:0] next_State;
 
-    always @( posedge clock ) begin
+    always @( posedge  clock ) begin
         state = next_State;
     end
 
-    always @( * ) begin
+    always @( posedge clock ) begin
         case (state)
             STATE_START: begin
                 if (sig_Coin == 1) begin
@@ -104,7 +108,7 @@ module Controller(
                 end
             end
             STATE_WASH: begin
-                if (sig_Completed == 1) begin
+                if (sig_Wash_Completed == 1) begin
                         next_State = STATE_RINSE;
                     end
                 else if (sig_Out_Of_Balance == 1) begin
@@ -115,7 +119,7 @@ module Controller(
                 end
             end
             STATE_RINSE: begin
-                if (sig_Completed == 1) begin
+                if (sig_Rinse_Completed == 1) begin
                         next_State = STATE_SPIN;
                     end
                 else if (sig_Motor_Failure == 1) begin
@@ -126,7 +130,7 @@ module Controller(
                 end
             end
             STATE_SPIN: begin
-                if (sig_Completed == 1) begin
+                if (sig_Spin_Completed == 1) begin
                         next_State = STATE_READY;
                     end
                 else if (sig_Motor_Failure == 1 | sig_Out_Of_Balance == 1) begin
@@ -146,15 +150,15 @@ module Controller(
     end
 
     assign start = (state == STATE_START) ? 1'b1 : 1'b0;
-    assign ready = (state == STATE_READY)? 1'b0: 1'b0;
-    assign fill_Water_Operation = (state == STATE_FILL_WATER)? 1'b0: 1'b0;
-    assign heat_Water_Operation = (state == STATE_HEAT_WATER)? 1'b0: 1'b0;
-    assign wash_Operation = (state == STATE_WASH)? 1'b0: 1'b0;
-    assign rinse_Operation = (state == STATE_RINSE)? 1'b0: 1'b0;
-    assign spin_Operation = (state ==STATE_SPIN)? 1'b0: 1'b0;
-    assign fault = (state == STATE_FAULT)? 1'b0: 1'b0;
-    assign coin_Return = (state == STATE_READY)? 1'b0: 1'b0 ;
-    assign water_Intake = ((state == STATE_FILL_WATER) || (state == STATE_RINSE))? 1'b0: 1'b0;
-    assign fault_Cleared = (state == STATE_FAULT)? 1'b0: 1'b0;
+    assign ready = (state == STATE_READY)? 1'b1: 1'b0;
+    assign fill_Water_Operation = (state == STATE_FILL_WATER)? 1'b1: 1'b0;
+    assign heat_Water_Operation = (state == STATE_HEAT_WATER)? 1'b1: 1'b0;
+    assign wash_Operation = (state == STATE_WASH)? 1'b1: 1'b0;
+    assign rinse_Operation = (state == STATE_RINSE)? 1'b1: 1'b0;
+    assign spin_Operation = (state ==STATE_SPIN)? 1'b1: 1'b0;
+    assign fault = (state == STATE_FAULT)? 1'b1: 1'b0;
+    assign coin_Return = (state == STATE_READY)? 1'b1: 1'b0 ;
+    assign water_Intake = ((state == STATE_FILL_WATER) || (state == STATE_RINSE))? 1'b1: 1'b0;
+    assign fault_Cleared = (state == STATE_FAULT)? 1'b1: 1'b0;
 
 endmodule
