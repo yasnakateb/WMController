@@ -10,7 +10,7 @@ The washing machine has the following states: start, ready, fill water, heat wat
 
 	🚫  the operation is timed out.
 	
-    🚫  the Operation is out of balance.
+    🚫  the operation is out of balance.
 
 	🚫  motor fails.
 
