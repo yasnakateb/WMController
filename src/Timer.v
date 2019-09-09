@@ -3,25 +3,25 @@ module Timer (
     state,
     sig_Full,
     sig_Temperature,
-    sig_Completed,
-    mode
+    sig_Completed
     );
     
     input clock;
     input [2:0] state;
-    output sig_Full ;
-    reg sig_Full = 0;
-    output reg sig_Temperature = 0;
-    output reg sig_Completed = 0;
-    output [1:0] mode;
+    output sig_Full;
+    output sig_Temperature;
+    output sig_Completed;
 
-    reg [2:0] counter = 0;
-    /*reg [1:0] fill_Water_Counter;
+
+    reg sig_Full;
+    reg sig_Temperature;
+    reg sig_Completed;
+
+    reg [1:0] fill_Water_Counter;
     reg [1:0] heat_Water_Counter;
     reg [2:0] wash_Counter;
     reg [1:0] rinse_Counter;
     reg [1:0] spin_Counter;
-    reg [1:0] mode = 0;*/
 
     parameter STATE_FILL_WATER = 3'd2;
     parameter STATE_HEAT_WATER = 3'd3;
@@ -35,56 +35,50 @@ module Timer (
     parameter RINSE_TIME = 2'd3;
     parameter SPIN_TIME = 2'd3;
 
-    
+
     always @ (posedge clock) begin 
-        /*if (fill_Water_Counter == FULL_WATER_TIME) begin
-            mode = 2'd1;
-            sig_Full = 1'b1;
+        if (fill_Water_Counter == FULL_WATER_TIME) begin
+            sig_Full = 1;
         end
-        else if (heat_Water_Counter == REQUIRED_TEMPERATURE_TIME) begin
-            mode = 2'd2;
+        if (heat_Water_Counter == REQUIRED_TEMPERATURE_TIME) begin
+            sig_Temperature = 1;
         end
-        else if (wash_Counter == WASH_TIME   | 
+        if (wash_Counter == WASH_TIME   | 
             rinse_Counter == RINSE_TIME |
             spin_Counter == SPIN_TIME ) begin
-            mode = 2'd3;
+            sig_Completed = 1;
         end
-        else begin
-            mode = 0;
-        end
-        */
         case (state)
             STATE_FILL_WATER: begin
-                counter <= counter + 1'd1;
+                fill_Water_Counter = fill_Water_Counter + 1'd1;
                 
             end
             STATE_HEAT_WATER: begin
-                counter <= counter + 1'd1;
+                heat_Water_Counter = heat_Water_Counter + 1'd1;
                 
             end
             STATE_WASH: begin
-                counter <= counter + 1'd1;
+                wash_Counter = wash_Counter + 1'd1;
                 
             end
             STATE_RINSE: begin
-                counter <= counter + 1'd1;
+                rinse_Counter = rinse_Counter + 1'd1;
                 
             end
             STATE_SPIN: begin
-                counter <= counter + 1'd1;
+                spin_Counter = spin_Counter + 1'd1;
                 
             end
             default : begin
-                counter <= counter + 1'd1;
+                fill_Water_Counter = 0;
+                heat_Water_Counter = 0;
+                wash_Counter = 0;
+                rinse_Counter = 0;
+                spin_Counter = 0;
+                
             end
         endcase
-    end
-    always @(counter) begin
-        sig_Full = (counter == FULL_WATER_TIME);
-    end
 
-    //assign sig_Full = (mode == 2'd1)? 1'b1 : 1'b0;
-    //assign sig_Temperature = (mode == 2'd2)? 1'b1 : 1'b0;
-    // ssign sig_Completed  = (mode == 2'd3)? 1'b1 : 1'b0;      
+    end                    
 
 endmodule

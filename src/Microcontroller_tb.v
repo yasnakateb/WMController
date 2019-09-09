@@ -84,6 +84,34 @@ Microcontroller uut(
 		clock = 0;
 		#1
 		clock = 1;
+		#1
+		clock = 0;
+		#1
+		clock = 1;
+		#1
+		clock = 0;
+		#1
+		clock = 1;
+		#1
+		clock = 0;
+		#1
+		clock = 1;
+		#1
+		clock = 0;
+		#1
+		clock = 1;
+		#1
+		clock = 0;
+		#1
+		clock = 1;
+		#1
+		clock = 0;
+		#1
+		clock = 1;
+		#1
+		clock = 0;
+		#1
+		clock = 1;
 	end
 
 endmodule
