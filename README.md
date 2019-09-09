@@ -17,9 +17,9 @@ The washing machine has the following states: start, ready, fill water, heat wat
 ## System Design
 The microcontroller is composed of two blocks:
 
-🔹📍A finite state machine block (controller)
+🔹📍 Finite state machine block (controller)
 
-🔹📍 A timer block.
+🔹📍 Timer block.
 
 ---
 ### ⚪️ Controller
