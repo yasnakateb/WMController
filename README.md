@@ -1,8 +1,8 @@
 # Washing Machine Controller
 ✨🐾✨ This project aims to design a Control System for Washing Machine using Verilog HDL.
 
-* The washing machine controller has the following functionalities:
-The washing machine has the following states: start, ready, fill water, heat water, wash, rinse, spin and fault.
+The washing machine controller has the following functionalities:
+* The washing machine has the following states: start, ready, fill water, heat water, wash, rinse, spin and fault.
 
 * Different time durations are allocated to each mode of operation.
 
