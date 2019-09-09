@@ -67,6 +67,7 @@ This project needs [Icarus-Verilog](http://iverilog.icarus.com) and a VCD viewer
 6. <code>$ make simulate</code> - compiles design+TB & simulates the verilog design.
 7. <code>$ make display</code> - displays waveforms.
 
-### Washing cycle stages
+---
+# Washing cycle stages
 
 ![](ScreenShots/fsm.png)
