@@ -124,7 +124,7 @@ module Controller(
             end
             STATE_SPIN: begin
                 if (sig_Spin_Completed == 1) 
-                    next_State = STATE_READY;
+                    next_State = STATE_START;
                     
                 else if (sig_Motor_Failure == 1 | sig_Out_Of_Balance == 1) 
                     next_State = STATE_FAULT;
