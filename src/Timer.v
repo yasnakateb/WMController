@@ -15,14 +15,12 @@ module Timer (
     output sig_Wash_Completed;
     output sig_Rinse_Completed;
     output sig_Spin_Completed;
-
-
+    
     reg sig_Full;
     reg sig_Temperature;
     reg sig_Wash_Completed;
     reg sig_Rinse_Completed;
     reg sig_Spin_Completed;
-
 
     reg [1:0] fill_Water_Counter;
     reg [1:0] heat_Water_Counter;
@@ -69,30 +67,25 @@ module Timer (
             sig_Wash_Completed = 0;
             sig_Rinse_Completed = 0;
             sig_Spin_Completed = 0; 
-        end        
+        end 
+
         case (state)
-            STATE_FILL_WATER: begin
+            STATE_FILL_WATER: 
                 fill_Water_Counter = fill_Water_Counter + 1'd1;
                 
-            end
-            STATE_HEAT_WATER: begin
+            STATE_HEAT_WATER: 
                 heat_Water_Counter = heat_Water_Counter + 1'd1;
                 
-            end
-            STATE_WASH: begin
+            STATE_WASH: 
                 wash_Counter = wash_Counter + 1'd1;
                 
-            end
-            STATE_RINSE: begin
+            STATE_RINSE: 
                 rinse_Counter = rinse_Counter + 1'd1;
                 
-            end
-            STATE_SPIN: begin
+            STATE_SPIN: 
                 spin_Counter = spin_Counter + 1'd1;
                 
-            end
         endcase
-
     end                    
 
 endmodule

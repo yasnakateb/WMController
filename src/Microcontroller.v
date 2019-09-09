@@ -18,9 +18,8 @@ module Microcontroller(
     input sig_Motor_Failure;
     output [2:0] state;
  
-
-
-    wire start;
+	
+	wire start;
     wire ready;
     wire fill_Water_Operation;
     wire heat_Water_Operation;

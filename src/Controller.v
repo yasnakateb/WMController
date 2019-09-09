@@ -50,7 +50,6 @@ module Controller(
     output fault_Cleared;
     output [2:0] state;
 
-
     parameter STATE_START = 3'd0 ;
     parameter STATE_READY = 3'd1;
     parameter STATE_FILL_WATER = 3'd2;
@@ -70,82 +69,74 @@ module Controller(
     always @( posedge clock ) begin
         case (state)
             STATE_START: begin
-                if (sig_Coin == 1) begin
-                    next_State = STATE_READY;     
-                end
-                else begin
+                if (sig_Coin == 1)
+                    next_State = STATE_READY;
+
+                else 
                     next_State = STATE_START;
-                end
             end
             STATE_READY: begin
-                if (sig_Lid_Closed == 1) begin
+                if (sig_Lid_Closed == 1)
                     next_State = STATE_FILL_WATER;
-                end
-                else if (sig_Cancel ==1 ) begin
+
+                else if (sig_Cancel ==1 )
                     next_State = STATE_START;
-                end
             end
             STATE_FILL_WATER: begin
-                if (sig_Full == 1) begin
+                if (sig_Full == 1)
                     next_State = STATE_HEAT_WATER;
-                end
-                else if (sig_Time_Out == 1) begin
+                
+                else if (sig_Time_Out == 1)
                     next_State = STATE_FAULT;
-                end
-                else begin
+                
+                else 
                     next_State = STATE_FILL_WATER;
-                end
             end
             STATE_HEAT_WATER: begin
-                if (sig_Temperature == 1) begin
-                        next_State = STATE_WASH;
-                    end
-                else if (sig_Time_Out == 1) begin
-                        next_State = STATE_FAULT;
-                end
-                else begin
-                        next_State = STATE_HEAT_WATER;
-                end
+                if (sig_Temperature == 1) 
+                    next_State = STATE_WASH;
+                    
+                else if (sig_Time_Out == 1) 
+                    next_State = STATE_FAULT;
+                
+                else 
+                    next_State = STATE_HEAT_WATER;
             end
             STATE_WASH: begin
-                if (sig_Wash_Completed == 1) begin
-                        next_State = STATE_RINSE;
-                    end
-                else if (sig_Out_Of_Balance == 1) begin
-                        next_State = STATE_FAULT;
-                end
-                else begin
-                        next_State = STATE_WASH;
-                end
+                if (sig_Wash_Completed == 1) 
+                    next_State = STATE_RINSE;
+                    
+                else if (sig_Out_Of_Balance == 1)
+                    next_State = STATE_FAULT;
+        
+                else 
+                    next_State = STATE_WASH;
             end
             STATE_RINSE: begin
-                if (sig_Rinse_Completed == 1) begin
-                        next_State = STATE_SPIN;
-                    end
-                else if (sig_Motor_Failure == 1) begin
-                        next_State = STATE_FAULT;
-                end
-                else begin
-                        next_State = STATE_RINSE;
-                end
+                if (sig_Rinse_Completed == 1) 
+                    next_State = STATE_SPIN;
+                    
+                else if (sig_Motor_Failure == 1) 
+                    next_State = STATE_FAULT;
+            
+                else 
+                    next_State = STATE_RINSE;
             end
             STATE_SPIN: begin
-                if (sig_Spin_Completed == 1) begin
-                        next_State = STATE_READY;
-                    end
-                else if (sig_Motor_Failure == 1 | sig_Out_Of_Balance == 1) begin
-                        next_State = STATE_FAULT;
-                end
-                else begin
-                        next_State = STATE_SPIN;
-                end
+                if (sig_Spin_Completed == 1) 
+                    next_State = STATE_READY;
+                    
+                else if (sig_Motor_Failure == 1 | sig_Out_Of_Balance == 1) 
+                    next_State = STATE_FAULT;
+                
+                else 
+                    next_State = STATE_SPIN;
             end
-            STATE_FAULT: begin
+            STATE_FAULT:
                 next_State = STATE_READY;
-            end
-            default: begin
+            
+            default: 
                 next_State = STATE_START;
-            end
         endcase    
     end
 

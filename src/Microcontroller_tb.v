@@ -19,19 +19,15 @@ Microcontroller uut(
     .state(state)
 	);
 
-	
 	always #1 clock = ~ clock;
+
 	initial begin 
 	$dumpfile("Microcontroller_tb.vcd");
     $dumpvars(0,Microcontroller_tb);
 
 		clock = 0;
 		sig_Coin = 1;
-		sig_Lid_Closed = 1;
-
-		
-		
-		
+		sig_Lid_Closed = 1;	
 	end
 
 endmodule
