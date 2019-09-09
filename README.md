@@ -62,9 +62,8 @@ This project needs [Icarus-Verilog](http://iverilog.icarus.com) and a VCD viewer
    <code>$ brew install icarus-verilog</code>
 2. Download [Scansion](http://www.logicpoet.com/scansion/) from here.  
 3. Clone the repository.
-4. Change the directory to src.
-5. <code>$ make simulate</code> - compiles design+TB & simulates the verilog design.
-6. <code>$ make display</code> - displays waveforms.
+4. <code>$ make simulate</code> - compiles design+TB & simulates the verilog design.
+5. <code>$ make display</code> - displays waveforms.
 
 ---
 # Washing cycle stages
