@@ -83,7 +83,10 @@ module Controller(
                     next_State = STATE_START;
             end
             STATE_FILL_WATER: begin
-                if (sig_Full == 1)
+                if (sig_Cancel ==1 )
+                    next_State = STATE_START;
+
+                else if (sig_Full == 1)
                     next_State = STATE_HEAT_WATER;
                 
                 else if (sig_Time_Out == 1)
@@ -93,7 +96,10 @@ module Controller(
                     next_State = STATE_FILL_WATER;
             end
             STATE_HEAT_WATER: begin
-                if (sig_Temperature == 1) 
+                if (sig_Cancel ==1 )
+                    next_State = STATE_START;
+
+                else if (sig_Temperature == 1) 
                     next_State = STATE_WASH;
                     
                 else if (sig_Time_Out == 1) 
@@ -103,7 +109,10 @@ module Controller(
                     next_State = STATE_HEAT_WATER;
             end
             STATE_WASH: begin
-                if (sig_Wash_Completed == 1) 
+                if (sig_Cancel ==1 )
+                    next_State = STATE_START;
+
+                else if (sig_Wash_Completed == 1) 
                     next_State = STATE_RINSE;
                     
                 else if (sig_Out_Of_Balance == 1)
@@ -113,7 +122,10 @@ module Controller(
                     next_State = STATE_WASH;
             end
             STATE_RINSE: begin
-                if (sig_Rinse_Completed == 1) 
+                if (sig_Cancel ==1 )
+                    next_State = STATE_START;
+
+                else if (sig_Rinse_Completed == 1) 
                     next_State = STATE_SPIN;
                     
                 else if (sig_Motor_Failure == 1) 
@@ -123,7 +135,10 @@ module Controller(
                     next_State = STATE_RINSE;
             end
             STATE_SPIN: begin
-                if (sig_Spin_Completed == 1) 
+                if (sig_Cancel ==1 )
+                    next_State = STATE_START;
+
+                else if (sig_Spin_Completed == 1) 
                     next_State = STATE_START;
                     
                 else if (sig_Motor_Failure == 1 | sig_Out_Of_Balance == 1) 
