@@ -62,11 +62,11 @@ module Controller(
     reg state = STATE_START;
     reg [2:0] next_State;
 
-    always @( posedge  clock ) begin
+    always @(posedge  clock) begin
         state = next_State;
     end
 
-    always @( posedge clock ) begin
+    always @(posedge clock) begin
         case (state)
             STATE_START: begin
                 if (sig_Coin == 1)
@@ -79,11 +79,11 @@ module Controller(
                 if (sig_Lid_Closed == 1)
                     next_State = STATE_FILL_WATER;
 
-                else if (sig_Cancel ==1 )
+                else if (sig_Cancel == 1)
                     next_State = STATE_START;
             end
             STATE_FILL_WATER: begin
-                if (sig_Cancel ==1 )
+                if (sig_Cancel == 1)
                     next_State = STATE_START;
 
                 else if (sig_Full == 1)
@@ -96,7 +96,7 @@ module Controller(
                     next_State = STATE_FILL_WATER;
             end
             STATE_HEAT_WATER: begin
-                if (sig_Cancel ==1 )
+                if (sig_Cancel == 1)
                     next_State = STATE_START;
 
                 else if (sig_Temperature == 1) 
@@ -109,7 +109,7 @@ module Controller(
                     next_State = STATE_HEAT_WATER;
             end
             STATE_WASH: begin
-                if (sig_Cancel ==1 )
+                if (sig_Cancel == 1)
                     next_State = STATE_START;
 
                 else if (sig_Wash_Completed == 1) 
@@ -122,7 +122,7 @@ module Controller(
                     next_State = STATE_WASH;
             end
             STATE_RINSE: begin
-                if (sig_Cancel ==1 )
+                if (sig_Cancel == 1)
                     next_State = STATE_START;
 
                 else if (sig_Rinse_Completed == 1) 
@@ -135,7 +135,7 @@ module Controller(
                     next_State = STATE_RINSE;
             end
             STATE_SPIN: begin
-                if (sig_Cancel ==1 )
+                if (sig_Cancel == 1)
                     next_State = STATE_START;
 
                 else if (sig_Spin_Completed == 1) 
@@ -163,7 +163,7 @@ module Controller(
     assign rinse_Operation = (state == STATE_RINSE)? 1'b1: 1'b0;
     assign spin_Operation = (state ==STATE_SPIN)? 1'b1: 1'b0;
     assign fault = (state == STATE_FAULT)? 1'b1: 1'b0;
-    assign coin_Return = (state == STATE_READY)? 1'b1: 1'b0 ;
+    assign coin_Return = (state == STATE_READY)? 1'b1: 1'b0;
     assign water_Intake = ((state == STATE_FILL_WATER) || (state == STATE_RINSE))? 1'b1: 1'b0;
     assign fault_Cleared = (state == STATE_FAULT)? 1'b1: 1'b0;
 
